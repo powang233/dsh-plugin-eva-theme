@@ -8,13 +8,16 @@
 
 为 **DeepSeek Harness / DSH** 打造的 EVA 双角色主题插件。<br />明日香的红与黑，绫波丽的白与蓝；从启动认证到每一次对话，保持同一套角色配色与声音。
 
-[![Release](https://img.shields.io/github/v/release/seaison/dsh-plugin-eva-theme?label=release&color=ff354d)](https://github.com/seaison/dsh-plugin-eva-theme/releases/latest) [![CI](https://github.com/seaison/dsh-plugin-eva-theme/actions/workflows/ci.yml/badge.svg)](https://github.com/seaison/dsh-plugin-eva-theme/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/code-MIT-176b91)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/powang233/dsh-plugin-eva-theme?label=custom&color=ff354d)](https://github.com/powang233/dsh-plugin-eva-theme/releases/tag/v0.51.2-custom.1) [![License: MIT](https://img.shields.io/badge/code-MIT-176b91)](LICENSE)
 
-[**下载最新版本**](https://github.com/seaison/dsh-plugin-eva-theme/releases/latest) · [快速安装](#快速安装) · [启动体验](#启动体验) · [更新日志](CHANGELOG.md) · [问题反馈](https://github.com/seaison/dsh-plugin-eva-theme/issues)
+[**下载定制发行版**](https://github.com/powang233/dsh-plugin-eva-theme/releases/tag/v0.51.2-custom.1) · [快速安装](#快速安装) · [启动体验](#启动体验) · [更新日志](CHANGELOG.md) · [问题反馈](https://github.com/powang233/dsh-plugin-eva-theme/issues)
 
-`dsh-plugin-eva-theme` · 当前版本 **v0.51.2**
+`dsh-plugin-eva-theme` · 当前版本 **v0.51.2-custom.1（定制分支）**
 
 </div>
+
+> **定制分支**：本仓库是 [powang233/dsh-plugin-eva-theme](https://github.com/powang233/dsh-plugin-eva-theme)，基于上游 [seaison/dsh-plugin-eva-theme](https://github.com/seaison/dsh-plugin-eva-theme) **v0.51.2** 的定制构建。
+> 新增 Windows 媒体桥、多音源播放器、真实频谱与响应式边栏；上游原版与后续更新请以 seaison 仓库为准。
 
 ## 双驾驶员，完整主题
 
@@ -48,11 +51,22 @@
 
 启动文字支持 **中文 / 日本語 / English**，保存所选语言，角色语音保持日语。每个浏览器会话自动播放一次；点击显示设置中的「重新选择驾驶员」即可重播。系统开启「减少动态效果」时会跳过开场动画，保留静态选择与语音；切到后台会暂停相应动画和声音。
 
+## 本分支的定制内容
+
+- **Windows 媒体桥**：SMTC + 网易云窗口兜底；WASAPI 回环 24 段真实频谱。
+- **多音源播放器**：主面板 + 紧凑控制器，或单面板来源标签切换。
+- **真实频谱**：点击机械环在真实频谱 / 装饰动画间切换，外红内绿 / 外绿内红配色互换。
+- **统一 HUD**：中央教条区危险条与时钟 / 音乐面板同规格。
+- **响应式边栏**：空间不足时整列等比缩小，可选隐藏 TPS / 标签或播放器。
+- **性能优化**：频谱与主题动画按需暂停，降低持续合成开销。
+
+> 定制内容基于上游 v0.51.2 的代码与素材；第三方素材许可说明见 [NOTICE](NOTICE.md)。
+
 ## 快速安装
 
 **普通使用无需运行构建命令。图片、音频与生成后的客户端已包含在仓库和安装包中。**
 
-1. 打开 [最新 Release](https://github.com/seaison/dsh-plugin-eva-theme/releases/latest)，下载 **Source code (zip)** 并解压；也可以克隆仓库。
+1. 打开 [定制发行版 v0.51.2-custom.1](https://github.com/powang233/dsh-plugin-eva-theme/releases/tag/v0.51.2-custom.1)，下载 `.tgz` 并解压（或下载 Source code zip）；也可以克隆本仓库。
 2. 在 DeepSeek Harness / DSH 左侧打开「插件」→「添加插件」，在「包名或地址」中填写**解压后的项目目录路径**，按提示安装并启用。
 3. 若宿主提示需要重载，按提示重载或重启应用；在启动页选择驾驶员即可进入对应主题。
 
@@ -64,7 +78,7 @@
 插件管理器的「包名或地址」也可填写：
 
 ```text
-https://github.com/seaison/dsh-plugin-eva-theme.git
+https://github.com/powang233/dsh-plugin-eva-theme.git
 ```
 
 Release 还提供标准 npm 格式的 `.tgz` 安装包。将其解压后，选择里面的 `package/` 目录安装。`SHA256SUMS.txt` 可用于核对下载文件的完整性。
