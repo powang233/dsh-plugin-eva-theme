@@ -1,6 +1,6 @@
 {
   "name": "dsh-plugin-eva-theme",
-  "version": "0.51.2",
+  "version": "0.51.2-custom.1",
   "description": "DSH / DeepSeek Harness EVA 主题插件：明日香暗色、绫波丽亮色，包含驾驶员选择、启动语音、时钟和音乐播放器",
   "keywords": [
     "dsh",
