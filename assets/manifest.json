@@ -140,6 +140,18 @@
       "type": "audio/mpeg",
       "bytes": 18015,
       "sha256": "2d940e2128c8eb7d49b0e98b1039846d714811c08e614957f10a5f32a9a3ab65"
+    },
+    "asukaMini": {
+      "file": "images/asuka-mini.png",
+      "type": "image/png",
+      "bytes": 45426,
+      "sha256": "0c02d562aec7d1907ae7cc489806c88055bb2f05b8f9d4a2d82228716db2f07e"
+    },
+    "reiMini": {
+      "file": "images/rei-mini.png",
+      "type": "image/png",
+      "bytes": 29436,
+      "sha256": "d246e539e9c3dd24a7b2db782651727e5430399273eaee451ac09b967dcf003c"
     }
   }
 }
