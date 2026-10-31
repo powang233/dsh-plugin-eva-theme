@@ -8,11 +8,11 @@
 
 为 **DeepSeek Harness / DSH** 打造的 EVA 双角色主题插件。<br />明日香的红与黑，绫波丽的白与蓝；从启动认证到每一次对话，保持同一套角色配色与声音。
 
-[![Release](https://img.shields.io/github/v/release/powang233/dsh-plugin-eva-theme?label=custom&color=ff354d)](https://github.com/powang233/dsh-plugin-eva-theme/releases/tag/v0.51.2-custom.2) [![License: MIT](https://img.shields.io/badge/code-MIT-176b91)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/powang233/dsh-plugin-eva-theme?label=custom&color=ff354d)](https://github.com/powang233/dsh-plugin-eva-theme/releases/tag/v0.51.2-custom.3) [![License: MIT](https://img.shields.io/badge/code-MIT-176b91)](LICENSE)
 
-[**下载定制发行版**](https://github.com/powang233/dsh-plugin-eva-theme/releases/tag/v0.51.2-custom.2) · [快速安装](#快速安装) · [启动体验](#启动体验) · [更新日志](CHANGELOG.md) · [问题反馈](https://github.com/powang233/dsh-plugin-eva-theme/issues)
+[**下载定制发行版**](https://github.com/powang233/dsh-plugin-eva-theme/releases/tag/v0.51.2-custom.3) · [快速安装](#快速安装) · [启动体验](#启动体验) · [更新日志](CHANGELOG.md) · [问题反馈](https://github.com/powang233/dsh-plugin-eva-theme/issues)
 
-`dsh-plugin-eva-theme` · 当前版本 **v0.51.2-custom.2（定制分支）**
+`dsh-plugin-eva-theme` · 当前版本 **v0.51.2-custom.3（定制分支）**
 
 </div>
 
@@ -66,7 +66,7 @@
 
 **普通使用无需运行构建命令。图片、音频与生成后的客户端已包含在仓库和安装包中。**
 
-1. 打开 [定制发行版 v0.51.2-custom.2](https://github.com/powang233/dsh-plugin-eva-theme/releases/tag/v0.51.2-custom.2)，下载 `.tgz` 并解压（或下载 Source code zip）；也可以克隆本仓库。
+1. 打开 [定制发行版 v0.51.2-custom.3](https://github.com/powang233/dsh-plugin-eva-theme/releases/tag/v0.51.2-custom.3)，下载 `.tgz` 并解压（或下载 Source code zip）；也可以克隆本仓库。
 2. 在 DeepSeek Harness / DSH 左侧打开「插件」→「添加插件」，在「包名或地址」中填写**解压后的项目目录路径**，按提示安装并启用。
 3. 若宿主提示需要重载，按提示重载或重启应用；在启动页选择驾驶员即可进入对应主题。
 
