@@ -22,13 +22,18 @@ import {
 } from "../lib/host-nowplaying.mjs";
 
 import {
+	ACCOUNT_CREDENTIAL_ID,
 	BALANCE_PATH,
 	BALANCE_URL,
 	CREDENTIAL_ID,
 	formatBalance,
 	isTrustedRequest,
+	parseAccountServiceBalance,
 	parseBalance,
+	parsePlatformBalance,
+	PLATFORM_BALANCE_URL,
 	secretOf,
+	tokenOfGrant,
 } from "../lib/host-balance.mjs";
 
 let passed = 0;
@@ -188,6 +193,45 @@ eq('无效进度归零',parseSystemNowPlaying(JSON.stringify({...system,position
 eq('系统控制只传固定动作和来源',JSON.stringify(systemControlArgs('next',system.bundleId)),JSON.stringify(['next',system.bundleId]));
 for(const action of ['__proto__','constructor','launch',{},null]) eq('系统控制拒绝任意动作',systemControlArgs(action,system.bundleId),null);
 for(const bundle of ['',null,'a; open x','a\nMusic']) eq('系统控制拒绝无效来源',systemControlArgs('playpause',bundle),null);
+
+// ============================================================
+// 3. 账号通道 —— 账号登录用户没有 API Key，余额要从平台钱包取
+// ============================================================
+eq("常量：账号凭据 id", ACCOUNT_CREDENTIAL_ID, "deepseek-account-platform/default");
+eq("常量：平台钱包地址", PLATFORM_BALANCE_URL, "https://platform.deepseek.com/api/v0/users/get_user_summary");
+
+// —— DSH 账号服务（首选通道，插件不接触 token）——
+const account = parseAccountServiceBalance({
+	status: "ready",
+	value: [{ currency: "CNY", balance: "97.47417192" }],
+	bonusWallets: [{ currency: "CNY", balance: "0" }],
+});
+eq("账号服务：金额", account.balance, 97.47417192);
+eq("账号服务：币种", account.currency, "CNY");
+eq("账号服务：赠送钱包", account.granted, 0);
+eq("账号服务：界面文本", formatBalance(account), "¥97.47");
+eq("账号服务：美元金额用 $", formatBalance(parseAccountServiceBalance({ status: "ready", value: [{ currency: "USD", balance: "3.5" }] })), "$3.50");
+eq("账号服务：无赠送钱包时为 null", account.granted === 0 && parseAccountServiceBalance({ status: "ready", value: [{ currency: "CNY", balance: "1" }] }).granted, null);
+for (const value of [null, {}, { status: "failed" }, { status: "ready", value: [] }, { status: "ready", value: [{ currency: "CNY", balance: "abc" }] }, { status: "ready" }]) {
+	eq("账号服务：拒绝异常响应 " + JSON.stringify(value), parseAccountServiceBalance(value), null);
+}
+
+// —— 账号 token 直连平台钱包（兜底通道）——
+const wallet = parsePlatformBalance({
+	code: 0,
+	data: { biz_code: 0, biz_data: { normal_wallets: [{ currency: "CNY", balance: "98.0009526000000000" }], bonus_wallets: [{ currency: "CNY", balance: "0" }] } },
+});
+eq("平台钱包：金额", wallet.balance, 98.0009526);
+eq("平台钱包：界面文本", formatBalance(wallet), "¥98.00");
+eq("平台钱包：拒绝非零 code", parsePlatformBalance({ code: 1, data: { biz_data: { normal_wallets: [{ currency: "CNY", balance: "1" }] } } }), null);
+eq("平台钱包：拒绝空钱包", parsePlatformBalance({ code: 0, data: { biz_data: { normal_wallets: [] } } }), null);
+eq("平台钱包：拒绝缺失 biz_data", parsePlatformBalance({ code: 0, data: {} }), null);
+
+// —— grant → token（账号 grant 的字段名是 token，不是 value）——
+eq("grant 取 token：对象形态", tokenOfGrant({ token: "abc" }), "abc");
+eq("grant 取 token：字符串形态", tokenOfGrant("abc"), "abc");
+eq("grant 取 token：兼容 value 形态", tokenOfGrant({ value: "abc" }), "abc");
+eq("grant 取 token：没有 token 时为空串", tokenOfGrant({ secret: "abc" }), "");
 
 // ============================================================
 // 结果
